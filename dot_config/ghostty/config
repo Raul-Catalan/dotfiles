@@ -46,4 +46,4 @@
 
 # font-family = Iosevka
 theme = Dracula
-opacity = 0.9
+background-opacity = 0.9
