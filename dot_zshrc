@@ -1,0 +1,49 @@
+##\\\\\\//////##
+##  Legacy B  ##
+##\\\\\\//////##
+
+# If not running in interactively, dont do anything?
+[[ $- != *i* ]] && return
+# Setting Default Prompt
+PS1='[\u@\h \W]\$ '
+
+##\\\\\\//////##
+##  Variable  ##
+##\\\\\\//////##
+
+ZSH_PLUGINS="/usr/share/zsh/plugins"
+
+##\\\\\/////##
+##  Shortc  ##
+##\\\\\/////##
+
+alias ls="ls --color=auto"
+alias grep="grep --color=auto"
+alias la="ls -a"
+
+##\\\\\/////##
+##  Plugin  ##
+##\\\\\/////##
+
+source "$ZSH_PLUGINS/zsh-autosuggestions/zsh-autosuggestions.zsh"
+source "$ZSH_PLUGINS/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+# Lowkey useless right now since we have no alias or shortcuts
+source "$ZSH_PLUGINS/zsh-you-should-use/you-should-use.plugin.zsh"
+
+##\\\\\/////##
+##  Utilis  ##
+##\\\\\/////##
+
+# Changing Default Editors
+export VISUAL=nvim
+export EDITOR="$VISUAL"
+
+# Node Version Manager
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Pure Prompt
+fpath+=($HOME/.zsh/pure)
+autoload -U promptinit; promptinit
+prompt pure
