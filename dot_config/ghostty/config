@@ -46,4 +46,5 @@
 
 # font-family = Iosevka
 theme = Dracula
+# Setting Opacity in Hyperland
 # background-opacity = 0.8
