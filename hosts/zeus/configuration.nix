@@ -12,6 +12,7 @@
     ../common/base.nix
     ../common/amdcpu.nix
     ../common/nvidia.nix
+    ../common/audio.nix
   ];
 
   # Bootloader
@@ -27,7 +28,15 @@
   networking.networkmanager.enable = true;
 
   # Noctalia Requirements
-  hardware.bluetooth.enable = true;
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+    settings = {
+      General = {
+        Enable = "Source,Sink,Media,Socket";
+      };
+    };
+  };
   services.power-profiles-daemon.enable = true;
   services.upower.enable = true;
 
@@ -68,6 +77,9 @@
     wget
     kitty
     git
+    wireplumber # Audio
+    pavucontrol # Audio
+    pamixer # Audio
   ];
 
   nix.settings.experimental-features = [
