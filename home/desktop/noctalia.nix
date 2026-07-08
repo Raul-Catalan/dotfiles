@@ -16,13 +16,15 @@
 
         wallpaper = {
           enabled = true;
-          default.path = "~/dotfiles/wallpapers/clouds-3.jpg";
+          default.path = "~/dotfiles/wallpapers/bars.jpg";
         };
 
+        /*
         shell = {
           launch_apps_as_systemd_services = true;
+          polkit_agent = true;
         };
-      };
+      };*/
 
       systemd.enable = true; # launch_apps_as_systemd_services must be enabled
     };

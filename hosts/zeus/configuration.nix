@@ -39,6 +39,7 @@
   };
   services.power-profiles-daemon.enable = true;
   services.upower.enable = true;
+  security.polkit.enable = true;
 
   # Set your time zone.
   time.timeZone = "America/Phoenix";
