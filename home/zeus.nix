@@ -13,6 +13,7 @@
 
   home.packages = with pkgs; [
     google-chrome
+    vesktop
   ];
 
   home.pointerCursor = {
@@ -21,6 +22,15 @@
     # Change: Light, Dark, Blue, Teal, Mauve were good
     package = pkgs.catppuccin-cursors.mochaLight;
     size = 24;
+  };
+
+  home.sessionVariables = {
+    # Tell Discord, VSCode, Spotify to use Wayland
+    NIXOS_OZONE_WL = "1";
+    # Ensure standard Wayland environment
+    XDG_SESSION_TYPE = "wayland";
+    XDG_CURRENT_DESKTOP = "Hyprland";
+    XDG_SESSION_DESKTOP = "Hyprland";
   };
 
   # Part of cursor config

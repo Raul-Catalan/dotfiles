@@ -1,6 +1,10 @@
 {
-  wayland.windowManager.hyprland.enable = true;
-  wayland.windowManager.hyprland.configType = "lua";
+  wayland.windowManager.hyprland = {
+    enable = true;
+    configType = "lua";
+    portalPackage = null;
+    systemd.variables = [ "--all" ];
+  };
 
   imports = [
     ./autostart.nix

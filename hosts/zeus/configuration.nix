@@ -68,6 +68,26 @@
     enable = true;
     xwayland.enable = true;
   };
+
+  # ScreenSharing
+  xdg.portal = {
+    enable = true;
+    # Add the Hyprland portal and the GTK portal (fallback for file choosers)
+    extraPortals = [
+      pkgs.xdg-desktop-portal-hyprland
+      pkgs.xdg-desktop-portal-gtk
+    ];
+
+    config = {
+      hyprland = {
+        default = [
+          "hyprland"
+          "gtk"
+        ];
+      };
+    };
+  };
+
   programs.fish.enable = true;
   # List packages installed in system profile. To search, run:
   # $ nix search wget
