@@ -1,10 +1,16 @@
-{ config, pkgs, ... }:
+{
+  inputs,
+  config,
+  pkgs,
+  ...
+}:
 
 {
   imports = [
     ./hypr/hyprland.nix
     ./terminal/shell.nix
     ./terminal/ghostty.nix
+    ./desktop/noctalia.nix
   ];
 
   home.username = "raul";

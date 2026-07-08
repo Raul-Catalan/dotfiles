@@ -65,6 +65,7 @@
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = true;
+                extraSpecialArgs = { inherit inputs; };
                 users.raul = import ./home/zeus.nix;
                 backupFileExtension = "backup";
               };
