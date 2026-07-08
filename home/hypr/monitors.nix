@@ -15,7 +15,7 @@
       monitor = [
         {
           # VGA245
-          output = "HDMI-A-2";
+          output = "desc:ASUSTek COMPUTER INC VG245 H1LMQS036332";
           mode = "1920x1080@60";
           position = "0x0";
           scale = "1.0";
@@ -23,7 +23,7 @@
         }
         {
           # VGA32AQL1A
-          output = "HDMI-A-1";
+          output = "desc:ASUSTek COMPUTER INC VG32AQL1A MBLMQS193396";
           mode = "2560x1440@144";
           position = "1080x0";
           scale = "1.0";
