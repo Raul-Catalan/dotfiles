@@ -1,0 +1,6 @@
+{
+  packages.rofi = {
+    enable = true;
+
+  };
+}
