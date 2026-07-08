@@ -22,6 +22,12 @@
       inputs.nixpkgs.follows = "nixpkgs"; # this line is optional, prevents downloading two versions of nixpkgs but disables cache
     };
 
+    # AMD CPU Microcode Updates
+    ucodenix = {
+      url = "github:e-tho/ucodenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
 
   # Remember to add inputs below as we add them

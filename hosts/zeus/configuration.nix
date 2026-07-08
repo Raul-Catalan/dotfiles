@@ -10,6 +10,8 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ../common/base.nix
+    ../common/amdcpu.nix
+    ../common/nvidia.nix
   ];
 
   # Bootloader

@@ -3,7 +3,6 @@
 {
   imports = [
     ./hypr/hyprland.nix
-    ./desktop/waybar.nix
     ./terminal/shell.nix
     ./terminal/ghostty.nix
   ];
