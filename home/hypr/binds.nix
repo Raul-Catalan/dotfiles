@@ -1,55 +1,114 @@
-{ pkgs, ... }:
+{ lib, ... }:
+let
+  lua = lib.generators.mkLuaInline;
+  mainMod = "SUPER";
+
+  dsp = {
+    exec = cmd: lua ''hl.dsp.exec_cmd("${cmd}")'';
+    close = lua "hl.dsp.window.close()";
+    exit = lua "hl.dsp.exit()";
+    float = lua ''hl.dsp.window.float({action = "toggle"})'';
+    fullscreen = lua "hl.dsp.window.fullscreen()";
+    pseudo = lua "hl.dsp.window.pseudo()";
+    layout = msg: lua ''hl.dsp.layout("${msg}")'';
+    focus = dir: lua ''hl.dsp.focus({ direction = "${dir}" })'';
+    swap = dir: lua ''hl.dsp.window.swap({ direction = "${dir}" })'';
+    toggleSpecial = name: lua ''hl.dsp.workspace.toggle_special("${name}")'';
+    moveToSpecial = name: lua ''hl.dsp.window.move({ workspace = "special:${name}" })'';
+    focusWorkspace = ws: lua ''hl.dsp.focus({ workspace = "${toString ws}" })'';
+    moveToWorkspace = ws: lua ''hl.dsp.window.move({ workspace = "${toString ws}" })'';
+    drag = lua "hl.dsp.window.drag()";
+    resize = lua "hl.dsp.window.resize()";
+    sendshortcut = mod: key: lua ''hl.dsp.send_shortcut({ mods = "${mod}", key = "${key}" })'';
+  };
+
+  bind = keys: dispatcher: {
+    _args = [
+      keys
+      dispatcher
+    ];
+  };
+  bindOpts = keys: dispatcher: opts: {
+    _args = [
+      keys
+      dispatcher
+      opts
+    ];
+  };
+
+  workspaceBinds = lib.concatMap (
+    i:
+    let
+      key = toString (lib.mod i 10);
+    in
+    [
+      (bind "${mainMod} + ${key}" (dsp.focusWorkspace i))
+      (bind "${mainMod} + SHIFT + ${key}" (dsp.moveToWorkspace i))
+    ]
+  ) (lib.range 1 10);
+in
 {
   wayland.windowManager.hyprland.settings = {
-    "$mod" = "SUPER";
     bind = [
-      "$mod, RETURN, exec, ghostty" # Run Terminal (Ghostty)
-      "$mod, Q, killactive" # Close current window
-      "$mod, M, exit" # Exit Hyperland
-      "$mod, B, exec, google-chrome-stable" # Open Browser (Google Chrome)
-      # file manager bind here
-      "$mod, T, togglefloating" # Toggle between tiling and floating window
-      "$mod, F, fullscreen" # Open the current window in fullscreen
-      "$mod, SPACE, exec, rofi -show drun" # Open Rofi
+      # App Launchers
+      (bind "${mainMod} + RETURN" (dsp.exec "ghostty")) # Run Terminal (Ghostty)
+      (bind "${mainMod} + B" (dsp.exec "google-chrome-stable")) # Open Browser
+      # <-- Place Holder for file Manager -->
+      # < Place Holder for App launcher >
 
-      ", XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%+"
-      ", XF86AudioLowerVolume, exec, wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%-"
+      # Screenshots
 
-      # Move focus with mainMod + arrow keys
-      "$mod, h, movefocus, l" # Move focus left
-      "$mod, l, movefocus, r" # Move focus right
-      "$mod, k, movefocus, u" # Move focus up
-      "$mod, j, movefocus, d" # Move focus down
+      # Universal copy/paste
+      (bind "${mainMod} + C" (dsp.sendshortcut "CTRL" "Insert"))
+      (bind "${mainMod} + V" (dsp.sendshortcut "SHIFT" "Insert"))
+      (bind "${mainMod} + X" (dsp.sendshortcut "CTRL" "X"))
 
-      # Switch workspaces with mainMod + [0-9]
-      "$mod, 1, workspace, 1" # Switch to workspace 1
-      "$mod, 2, workspace, 2" # Switch to workspace 2
-      "$mod, 3, workspace, 3" # Switch to workspace 3
-      "$mod, 4, workspace, 4" # Switch to workspace 4
-      "$mod, 5, workspace, 5" # Switch to workspace 5
-      "$mod, 6, workspace, 6" # Switch to workspace 6
-      "$mod, 7, workspace, 7" # Switch to workspace 7
-      "$mod, 8, workspace, 8" # Switch to workspace 8
-      "$mod, 9, workspace, 9" # Switch to workspace 9
-      "$mod, 0, workspace, 10" # Switch to workspace 10
+      # Window management
+      (bind "${mainMod} + Q" dsp.close) # Close Window
+      (bind "${mainMod} + SHIFT + Q" (dsp.exit)) # Close Hyprland
+      (bind "${mainMod} + T" (dsp.float)) # Toggle between tiling and floating windows
+      (bind "${mainMod} + F" (dsp.fullscreen)) # Fullscreen current window
+      (bind "${mainMod} + P" dsp.pseudo)
+      # (bind "${mainMod} + J" (dsp.layout "togglesplit"))
 
-      # Move active window to a workspace with mainMod + SHIFT + [0-9]
-      "$mod SHIFT, 1, movetoworkspace, 1" # Move window to workspace 1
-      "$mod SHIFT, 2, movetoworkspace, 2" # Move window to workspace 2
-      "$mod SHIFT, 3, movetoworkspace, 3" # Move window to workspace 3
-      "$mod SHIFT, 4, movetoworkspace, 4" # Move window to workspace 4
-      "$mod SHIFT, 5, movetoworkspace, 5" # Move window to workspace 5
-      "$mod SHIFT, 6, movetoworkspace, 6" # Move window to workspace 6
-      "$mod SHIFT, 7, movetoworkspace, 7" # Move window to workspace 7
-      "$mod SHIFT, 8, movetoworkspace, 8" # Move window to workspace 8
-      "$mod SHIFT, 9, movetoworkspace, 9" # Move window to workspace 9
-      "$mod SHIFT, 0, movetoworkspace, 10" # Move window to workspace 10
-    ];
+      # Focus
+      (bind "${mainMod} + H" (dsp.focus "left"))
+      (bind "${mainMod} + L" (dsp.focus "right"))
+      (bind "${mainMod} + K" (dsp.focus "up"))
+      (bind "${mainMod} + J" (dsp.focus "down"))
 
-    bindm = [
-      # Move/resize windows with mainMod + LMB/RMB and dragging
-      "$mod, mouse:272, movewindow" # Move window
-      "$mod, mouse:273, resizewindow" # Resize window
-    ];
+      # Swap Windows
+      (bind "${mainMod} + SHIFT + H" (dsp.swap "left"))
+      (bind "${mainMod} + SHIFT + L" (dsp.swap "right"))
+      (bind "${mainMod} + SHIFT + K" (dsp.swap "up"))
+      (bind "${mainMod} + SHIFT + J" (dsp.swap "down"))
+
+      # Special workspace
+      (bind "${mainMod} + S" (dsp.toggleSpecial "magic"))
+      (bind "${mainMod} + SHIFT + S" (dsp.moveToSpecial "magic"))
+
+      # Scroll through workspaces
+      (bind "${mainMod} + mouse_down" (dsp.focusWorkspace "e+1"))
+      (bind "${mainMod} + mouse_up" (dsp.focusWorkspace "e-1"))
+
+      # Volume keys
+      (bindOpts "XF86AudioRaiseVolume" (dsp.exec "wpctl set-volume @ 5%+") {
+        locked = true;
+        repeating = true;
+      })
+      (bindOpts "XF86AudioLowerVolume" (dsp.exec "wpctl set-volume @ 5%-") {
+        locked = true;
+        repeating = true;
+      })
+      (bindOpts "XF86AudioMute" (dsp.exec "wpctl set-mute @ toggle") { locked = true; })
+      (bindOpts "XF86AudioMicMute" (dsp.exec "wpctl set-mute u/DEFAULT_AUDIO_SOURCE@ toggle") {
+        locked = true;
+      })
+
+      # Mouse move/resize
+      (bindOpts "${mainMod} + mouse:272" dsp.drag { mouse = true; })
+      (bindOpts "${mainMod} + mouse:273" dsp.resize { mouse = true; })
+    ]
+    ++ workspaceBinds;
   };
 }
