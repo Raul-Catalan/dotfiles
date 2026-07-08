@@ -13,7 +13,8 @@
 
   home.packages = with pkgs; [
     google-chrome
-    vesktop
+    vesktop # Discord
+    zoom-us
   ];
 
   home.pointerCursor = {
