@@ -21,6 +21,12 @@
       shell = {
         launch_apps_as_systemd_services = true;
         polkit_agent = true;
+        screenshot = {
+          save_to_file = true;
+          directory = "~/screenshots";
+          filename_pattern = "screenshot_%Y%m%d_%H%M%S";
+          copy_to_clipboard = true;
+        };
       };
 
       location = {
