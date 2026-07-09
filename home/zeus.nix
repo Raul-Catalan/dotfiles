@@ -21,6 +21,7 @@
     google-chrome
     vesktop # Discord
     zoom-us
+    libnotify
   ];
 
   home.pointerCursor = {
