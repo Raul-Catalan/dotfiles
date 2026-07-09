@@ -57,6 +57,8 @@ in
       # < Place Holder for App launcher >
 
       # Screenshots
+      (bind "${mainMod} + CTRL + 1" (dsp.exec "noctalia msg screenshot-region"))
+      (bind "${mainMod} + CTRL + 2" (dsp.exec "noctalia msg screenshot-fullscreen"))
 
       # Universal copy/paste
       (bind "${mainMod} + C" (dsp.sendshortcut "CTRL" "Insert"))
