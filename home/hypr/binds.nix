@@ -54,7 +54,8 @@ in
       (bind "${mainMod} + RETURN" (dsp.exec "ghostty")) # Run Terminal (Ghostty)
       (bind "${mainMod} + B" (dsp.exec "google-chrome-stable")) # Open Browser
       # <-- Place Holder for file Manager -->
-      # < Place Holder for App launcher >
+      (bind "${mainMod} + SPACE" (dsp.exec "noctalia msg panel-toggle launcher"))
+      (bind "${mainMod} + CTRL + SPACE" (dsp.exec "noctalia msg panel-toggle control-center"))
 
       # Screenshots
       (bind "${mainMod} + CTRL + 1" (dsp.exec "noctalia msg screenshot-region"))
