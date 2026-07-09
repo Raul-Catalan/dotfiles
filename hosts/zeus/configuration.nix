@@ -7,6 +7,7 @@
 
 {
   imports = [
+    inputs.noctalia-greeter.nixosModules.default
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ../common/base.nix
@@ -59,11 +60,22 @@
     LC_TIME = "en_US.UTF-8";
   };
 
+  # Allow udev rule to edit keyboard in VIA
+  hardware.keyboard.qmk.enable = true;
+  services.udev.extraRules = ''
+    KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="cb10", ATTRS{idProduct}=="1756", MODE="0666"
+    SUBSYSTEM=="usb", ATTRS{idVendor}=="cb10", ATTRS{idProduct}=="1756", TAG+="uaccess"
+  '';
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
   # services.getty.autologinUser = "raul";
-  services.displayManager.ly.enable = true;
+  # services.displayManager.ly.enable = true;
+  programs.noctalia-greeter = {
+    enable = true;
+    greeter-args = "";
+  };
 
   programs.hyprland = {
     enable = true;

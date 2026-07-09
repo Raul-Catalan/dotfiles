@@ -92,16 +92,18 @@ in
       (bind "${mainMod} + mouse_up" (dsp.focusWorkspace "e-1"))
 
       # Volume keys
-      (bindOpts "XF86AudioRaiseVolume" (dsp.exec "wpctl set-volume @ 5%+") {
+      (bindOpts "XF86AudioRaiseVolume" (dsp.exec "wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+") {
         locked = true;
         repeating = true;
       })
-      (bindOpts "XF86AudioLowerVolume" (dsp.exec "wpctl set-volume @ 5%-") {
+      (bindOpts "XF86AudioLowerVolume" (dsp.exec "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-") {
         locked = true;
         repeating = true;
       })
-      (bindOpts "XF86AudioMute" (dsp.exec "wpctl set-mute @ toggle") { locked = true; })
-      (bindOpts "XF86AudioMicMute" (dsp.exec "wpctl set-mute u/DEFAULT_AUDIO_SOURCE@ toggle") {
+      (bindOpts "XF86AudioMute" (dsp.exec "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle") {
+        locked = true;
+      })
+      (bindOpts "XF86AudioMicMute" (dsp.exec "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle") {
         locked = true;
       })
 
