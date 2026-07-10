@@ -48,6 +48,49 @@
     };
   };
 
+  programs.git = {
+    enable = true;
+    settings = {
+
+      user = {
+        name = "Raul Catalan";
+        email = "raulrcatalan@gmail.com";
+      };
+
+      core = {
+        editor = "hx";
+      };
+
+      init = {
+        defaultBranch = "main";
+      };
+
+      pull = {
+        rebase = true;
+      };
+
+    };
+  };
+
+  programs.gh = {
+    enable = true;
+    gitCredentialHelper = {
+      enable = true;
+    };
+  };
+
+  wayland.windowManager.hyprland = {
+    enable = true;
+    settings = {
+      config = {
+        misc = {
+          force_default_wallpaper = 0;
+          disable_hyprland_logo = true;
+        };
+      };
+    };
+  };
+
   home.packages = with pkgs; [
     nixfmt # Formatter for nix used in languages.toml
     nixd # Nix Language Server
