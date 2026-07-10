@@ -56,17 +56,18 @@
             action = "screen_off";
             enabled = true;
           };
-          suspend = {
-            timeout = 1800;
-            action = "lock_and_suspend";
-          };
           /*
-            custom = {
-              timeout = 48;
-              action = "command";
-              command = "notify-send 'Idle' 'Going idle'";
-              resume_command = "notify-send 'Idle' 'Back from idle'";
+            # Buggy Suspend
+            suspend = {
+              timeout = 1800;
+              action = "lock_and_suspend";
             };
+              custom = {
+                timeout = 48;
+                action = "command";
+                command = "notify-send 'Idle' 'Going idle'";
+                resume_command = "notify-send 'Idle' 'Back from idle'";
+              };
           */
         };
       };

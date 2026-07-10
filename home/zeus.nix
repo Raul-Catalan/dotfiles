@@ -22,6 +22,8 @@
     vesktop # Discord
     zoom-us
     libnotify
+    slack
+    pavucontrol
   ];
 
   home.pointerCursor = {
