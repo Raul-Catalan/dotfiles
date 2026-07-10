@@ -90,8 +90,12 @@
       };
     };
   };
+  imports = [
+    ./hypr/binds.nix
+  ];
 
   home.packages = with pkgs; [
+    ghostty
     nixfmt # Formatter for nix used in languages.toml
     nixd # Nix Language Server
     gh
