@@ -26,13 +26,5 @@
     ];
   };
 
-  # services.getty.autologinUser = "raul";
-  services.displayManager.ly.enable = true;
-
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-  };
-
   system.stateVersion = "26.05";
 }

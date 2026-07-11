@@ -1,7 +1,8 @@
-# Keeping incase cp the zeus.nix file doesnt work, should delete once we have a hermes.nix file setup with the config.
-{ config, pkgs, ... }:
-
+{ pkgs, ... }:
 {
+  imports = [
+
+  ];
   home.username = "raul";
   home.homeDirectory = "/home/raul";
   home.stateVersion = "26.05";
@@ -95,6 +96,7 @@
   ];
 
   home.packages = with pkgs; [
+    kitty
     ghostty
     nixfmt # Formatter for nix used in languages.toml
     nixd # Nix Language Server
