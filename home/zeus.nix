@@ -3,6 +3,7 @@
   imports = [
     ../modules/home/hypr/hyprland.nix
     ../modules/home/noctalia.nix
+    ../modules/home/noctalia-greeter.nix
     ../modules/home/ghostty.nix
     ../modules/home/cli/default.nix
   ];

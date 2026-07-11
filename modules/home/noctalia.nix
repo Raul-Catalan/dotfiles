@@ -15,7 +15,30 @@
 
       wallpaper = {
         enabled = true;
-        default.path = "~/dotfiles/wallpapers/bars.jpg";
+        transition_on_startup = true;
+        per_monitor_directories = true;
+
+        default.path = "~/dotfiles/wallpapers/black-hole.png";
+
+        automation = {
+          enabled = true;
+          interval_seconds = 3600;
+          order = "random";
+        };
+
+        monitor = {
+          "HDMI-A-1" = {
+            enabled = true;
+            directory = "/home/raul/dotfiles/wallpapers/horizontal";
+          };
+        };
+
+        monitor = {
+          "HDMI-A-2" = {
+            enabled = true;
+            directory = "/home/raul/dotfiles/wallpapers/vertical";
+          };
+        };
       };
 
       shell = {
