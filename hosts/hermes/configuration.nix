@@ -8,7 +8,8 @@
     # ../../modules/nixos/hardware/nvidia.nix
     # ../../hosts/common/default.nix
     ../../modules/nixos/system/bootloader.nix
-    ../common
+    ../../modules/nixos/system/default.nix
+    ../../modules/nixos/desktop/default.nix
   ];
 
   networking.hostName = "hermes"; # Define your hostname.
@@ -25,6 +26,10 @@
       "wheel"
     ];
   };
+
+  # NEED TO REMOVE ONCE WE INTERGRATE NOCTALIA LOGIN
+  # Ly Display Manager as backup
+  services.displayManager.ly.enable = true;
 
   system.stateVersion = "26.05";
 }

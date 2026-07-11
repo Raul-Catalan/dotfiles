@@ -54,11 +54,13 @@
             ./hosts/hermes/configuration.nix
             home-manager.nixosModules.home-manager
             {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              extraSpecialArgs = { inherit inputs; };
-              home-manager.users.raul = import ./home/hermes.nix;
-              home-manager.backupFileExtension = "backup";
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                extraSpecialArgs = { inherit inputs; };
+                users.raul = import ./home/hermes.nix;
+                backupFileExtension = "backup";
+              };
             }
           ];
         };
