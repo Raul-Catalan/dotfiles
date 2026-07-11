@@ -21,7 +21,7 @@
   environment.systemPackages = with pkgs; [
     git
     vim
-    hx
+    helix
     curl
     wget
     killall
