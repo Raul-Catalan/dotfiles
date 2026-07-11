@@ -166,6 +166,5 @@
     nixd # Nix Language Server
     bat
     imagemagick
-    tree
   ];
 }
