@@ -87,8 +87,8 @@ in
       (bind "${mainMod} + SHIFT + J" (dsp.swap "down"))
 
       # Special workspace
-      (bind "${mainMod} + S" (dsp.toggleSpecial "magic"))
-      (bind "${mainMod} + SHIFT + S" (dsp.moveToSpecial "magic"))
+      (bind "${mainMod} + S" (dsp.toggleSpecial "scratchpad"))
+      (bind "${mainMod} + SHIFT + S" (dsp.moveToSpecial "scratchpad"))
 
       # Scroll through workspaces
       (bind "${mainMod} + mouse_down" (dsp.focusWorkspace "e+1"))
