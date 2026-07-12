@@ -55,6 +55,12 @@
       location = {
         address = "Phoenix, AZ";
       };
+      weather = {
+        enable = true;
+        refresh_minutes = 30;
+        unit = "imperial";
+        effects = true;
+      };
 
       nightlight = {
         enable = true;
