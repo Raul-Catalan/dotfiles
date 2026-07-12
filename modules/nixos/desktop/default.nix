@@ -77,6 +77,6 @@
     wireplumber # Audio
     pavucontrol # Audio
     pamixer # Audio
-    xdg-util # Google Chrome Opens Apps
+    xdg-utils # Google Chrome Opens Apps
   ];
 }
