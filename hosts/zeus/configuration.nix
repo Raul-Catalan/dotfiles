@@ -11,9 +11,11 @@
     ../../modules/nixos/system/bootloader.nix
     ../../modules/nixos/system/audio.nix
     ../../modules/nixos/system/fonts.nix
+    ../../modules/nixos/system/nix-ld.nix
     ../../modules/nixos/hardware/amdcpu.nix
     ../../modules/nixos/hardware/nvidia.nix
     ../../modules/nixos/desktop/default.nix
+    ../../modules/nixos/virtualisation/docker.nix
   ];
 
   # --- Networking ---
@@ -26,6 +28,7 @@
     extraGroups = [
       "networkmanager"
       "wheel"
+      "docker"
     ];
     shell = pkgs.fish;
   };

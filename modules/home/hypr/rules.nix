@@ -16,6 +16,12 @@
         };
         float = true;
       }
+      {
+        match = {
+          class = "chrome-nngceckbapebfimnlniiiahkandclblb-Default"; # Bitwarden Popup
+        };
+        float = true;
+      }
     ];
     workspace_rule = [
       {
