@@ -16,6 +16,7 @@
     greeter-args = "";
   };
 
+  # Install Steam at the OS level
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true;
@@ -60,6 +61,9 @@
     KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="cb10", ATTRS{idProduct}=="1756", MODE="0666"
     SUBSYSTEM=="usb", ATTRS{idVendor}=="cb10", ATTRS{idProduct}=="1756", TAG+="uaccess"
   '';
+
+  # Need to Enable this for VSCode to install stuff without breaking
+  programs.nix-ld.enable = true;
 
   environment.systemPackages = with pkgs; [
     inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default

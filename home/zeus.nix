@@ -5,6 +5,7 @@
     ../modules/home/noctalia.nix
     ../modules/home/ghostty.nix
     ../modules/home/cli/default.nix
+    ../modules/home/vscode.nix
   ];
 
   home = {
