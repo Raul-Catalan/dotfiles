@@ -37,7 +37,7 @@
   services.upower.enable = true;
   security.polkit.enable = true;
 
-  # ScreenSharing
+  # ScreenSharing and Communicating between apps
   xdg.portal = {
     enable = true;
     # Add the Hyprland portal and the GTK portal (fallback for file choosers)
@@ -52,6 +52,7 @@
           "gtk"
         ];
       };
+      common.default = "*";
     };
   };
 
@@ -62,6 +63,11 @@
     SUBSYSTEM=="usb", ATTRS{idVendor}=="cb10", ATTRS{idProduct}=="1756", TAG+="uaccess"
   '';
 
+  # --- Keyring ---
+  services.gnome.gnome-keyring.enable = true;
+  # Enable Seahorse to manage the keyring securely
+  programs.seahorse.enable = true;
+
   # Need to Enable this for VSCode to install stuff without breaking
   programs.nix-ld.enable = true;
 
@@ -71,5 +77,6 @@
     wireplumber # Audio
     pavucontrol # Audio
     pamixer # Audio
+    xdg-util # Google Chrome Opens Apps
   ];
 }

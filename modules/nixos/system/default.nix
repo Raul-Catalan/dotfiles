@@ -22,11 +22,6 @@
   # --- Time & Locale ---
   time.timeZone = "America/Phoenix";
 
-  # --- Keyring ---
-  services.gnome.gnome-keyring.enable = true;
-  # Enable Seahorse to manage the keyring securely
-  programs.seahorse.enable = true;
-
   # --- Packages ---
   # Packages we need at minimum, our 'survival packages' if you will
   # $ nix search wget
