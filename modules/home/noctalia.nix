@@ -101,6 +101,20 @@
         };
       };
 
+      plugins = {
+        enabled = [
+          "noctalia/notes"
+        ];
+        source = [
+          {
+            name = "official";
+            kind = "git";
+            location = "https://github.com/noctalia-dev/official-plugins";
+            auto_update = true;
+          }
+        ];
+      };
+
       systemd.enable = true; # launch_apps_as_systemd_services must be enabled
     };
   };
