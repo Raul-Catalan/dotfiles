@@ -12,5 +12,6 @@
     ./monitors.nix
     ./environments.nix
     ./general.nix
+    ./rules.nix
   ];
 }

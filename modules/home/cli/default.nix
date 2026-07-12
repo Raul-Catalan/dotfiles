@@ -19,5 +19,6 @@
     bat # Better Cat
     imagemagick # To CLI edit images
     mediainfo # CLI tool to see media Info, also integrated with yazi for media info
+    btop # Measure Performance
   ];
 }
