@@ -4,7 +4,14 @@
     "nix-command"
     "flakes"
   ];
+  # --- Optimize Space ---
   nix.settings.auto-optimise-store = true;
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 14d";
+    persistent = true;
+  };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -27,4 +34,5 @@
     killall
     tree
   ];
+
 }
