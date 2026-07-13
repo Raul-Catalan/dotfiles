@@ -29,5 +29,6 @@
     shell = pkgs.fish;
   };
 
+  services.displayManager.ly.enable = true;
   system.stateVersion = "26.05";
 }

@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   imports = [
-
+    ../modules/home/hypr/binds.nix
   ];
   home.username = "raul";
   home.homeDirectory = "/home/raul";
@@ -91,10 +91,6 @@
       };
     };
   };
-  imports = [
-    ./hypr/binds.nix
-  ];
-
   home.packages = with pkgs; [
     kitty
     ghostty
