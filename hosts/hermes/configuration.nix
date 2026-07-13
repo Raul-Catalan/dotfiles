@@ -1,15 +1,15 @@
-{ pkgs, ... }:
-
+{ inputs, pkgs, ... }:
 {
   imports = [
-    # Include the results of the hardware scan.
+    inputs.noctalia-greeter.nixosModules.default
     ./hardware-configuration.nix
-    # Examples:
-    # ../../modules/nixos/hardware/nvidia.nix
-    # ../../hosts/common/default.nix
-    ../../modules/nixos/system/bootloader.nix
     ../../modules/nixos/system/default.nix
+    ../../modules/nixos/system/bootloader.nix
+    ../../modules/nixos/system/audio.nix
+    ../../modules/nixos/system/fonts.nix
+    ../../modules/nixos/system/nix-ld.nix
     ../../modules/nixos/desktop/default.nix
+    ../../modules/nixos/virtualisation/docker.nix
   ];
 
   networking.hostName = "hermes"; # Define your hostname.
@@ -24,12 +24,10 @@
     extraGroups = [
       "networkmanager"
       "wheel"
+      "docker"
     ];
+    shell = pkgs.fish;
   };
-
-  # NEED TO REMOVE ONCE WE INTERGRATE NOCTALIA LOGIN
-  # Ly Display Manager as backup
-  services.displayManager.ly.enable = true;
 
   system.stateVersion = "26.05";
 }

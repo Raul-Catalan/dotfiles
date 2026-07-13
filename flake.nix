@@ -36,6 +36,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Lenovo Thinkpad Carbon X1 11th gen
+    nixos-hardware = {
+      url = "github:NixOS/nixos-hardware";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   # Remember to add inputs below as we add them
@@ -43,6 +48,7 @@
     {
       nixpkgs,
       home-manager,
+      nixos-hardware,
       ...
     }@inputs:
     {
@@ -62,6 +68,7 @@
                 backupFileExtension = "backup";
               };
             }
+            nixos-hardware.nixosModules.lenovo-thinkpad-x1-11th-gen
           ];
         };
         zeus = nixpkgs.lib.nixosSystem {
