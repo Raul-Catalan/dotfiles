@@ -2,6 +2,7 @@
 {
   imports = [
     ../modules/home/hypr/hyprland.nix
+    ../modules/home/hypr/environments_nvidia.nix
     ../modules/home/noctalia.nix
     ../modules/home/ghostty.nix
     ../modules/home/cli/default.nix

@@ -29,6 +29,13 @@
           scale = "1.0";
         }
         {
+          # Thinkpad Built In Screen
+          output = "desc:Chimei Innolux Corporation 0x1417";
+          mode = "1920x1200@60";
+          position = "auto";
+          scale = "1.0";
+        }
+        {
           # Fallback/default
           output = "";
           mode = "preferred";

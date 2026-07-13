@@ -1,4 +1,3 @@
-{ lib, ... }:
 {
   wayland.windowManager.hyprland = {
     /*

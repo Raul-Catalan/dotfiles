@@ -20,26 +20,8 @@
     }
     {
       _args = [
-        "LIBVA_DRIVER_NAME"
-        "nvidia"
-      ];
-    }
-    {
-      _args = [
         "XDG_SESSION_TYPE"
         "wayland"
-      ];
-    }
-    {
-      _args = [
-        "GBM_BACKEND"
-        "nvidia-drm"
-      ];
-    }
-    {
-      _args = [
-        "__GLX_VENDOR_LIBRARY_NAME"
-        "nvidia"
       ];
     }
     {
