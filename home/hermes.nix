@@ -4,7 +4,7 @@
     ../modules/home/hypr/binds.nix
     ../modules/home/noctalia.nix
     ../modules/home/ghostty.nix
-    ../modules/home/cli/defaul.nix
+    ../modules/home/cli/default.nix
     ../modules/home/vscode.nix
   ];
 

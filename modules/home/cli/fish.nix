@@ -5,6 +5,7 @@
     shellAbbrs = {
       la = "ls -a";
       zeus-update = "sudo nixos-rebuild switch --flake ~/dotfiles#zeus";
+      hermes-update = "sudo nixos-rebuild switch --flake ~/dotfiles#hermes";
       ga = "git add .";
       gc = "git commit -m";
     };
