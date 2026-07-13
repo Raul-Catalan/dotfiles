@@ -2,83 +2,11 @@
 {
   imports = [
     ../modules/home/hypr/binds.nix
+    ../modules/home/noctalia.nix
+    ../modules/home/ghostty.nix
+    ../modules/home/cli/defaul.nix
+    ../modules/home/vscode.nix
   ];
-  home.username = "raul";
-  home.homeDirectory = "/home/raul";
-  home.stateVersion = "26.05";
-  programs.bash = {
-    enable = true;
-    shellAliases = {
-      btw = "echo i use hyprland btw";
-    };
-  };
-
-  # Helix Config
-  programs.helix = {
-    enable = true;
-
-    # ~/.config/helix/config.toml
-    settings = {
-      theme = "dracula_at_night";
-      editor = {
-        # line-number = "relative";
-        mouse = true;
-        cursor-shape = {
-          normal = "block";
-          insert = "bar";
-          select = "underline";
-        };
-      };
-    };
-
-    # ~/.config/helix/languages.toml
-    languages = {
-      language = [
-        {
-          name = "nix";
-          auto-format = true;
-          formatter.command = "${pkgs.nixfmt}/bin/nixfmt";
-        }
-      ];
-
-      language-server = {
-        nixd = {
-          command = "nixd";
-        };
-      };
-    };
-  };
-
-  programs.git = {
-    enable = true;
-    settings = {
-
-      user = {
-        name = "Raul Catalan";
-        email = "raulrcatalan@gmail.com";
-      };
-
-      core = {
-        editor = "hx";
-      };
-
-      init = {
-        defaultBranch = "main";
-      };
-
-      pull = {
-        rebase = true;
-      };
-
-    };
-  };
-
-  programs.gh = {
-    enable = true;
-    gitCredentialHelper = {
-      enable = true;
-    };
-  };
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -91,12 +19,39 @@
       };
     };
   };
-  home.packages = with pkgs; [
-    kitty
-    ghostty
-    nixfmt # Formatter for nix used in languages.toml
-    nixd # Nix Language Server
-    gh
-    google-chrome
-  ];
+
+  home = {
+    username = "raul";
+    homeDirectory = "/home/raul";
+    stateVersion = "26.05";
+
+    packages = with pkgs; [
+      google-chrome
+      vesktop # Discord
+      zoom-us
+      libnotify
+      slack
+      pavucontrol
+    ];
+
+    pointerCursor = {
+      gtk.enable = true;
+      name = "Catppuccin Cursor";
+      package = pkgs.catppuccin-cursors.mochaLight;
+      size = 24;
+    };
+
+    sessionVariables = {
+      # Tell Discord, VSCode, Spotify to use Wayland
+      NIXOS_OZONE_WL = "1";
+      # Ensure standard Wayland Environment
+      XDG_SESSION_TYPE = "wayland";
+      XDG_CURRENT_DESKTOP = "Hyprland";
+      XDG_SESSION_DESKTOP = "Hyprland";
+    };
+  };
+
+  gtk = {
+    enable = true;
+  };
 }

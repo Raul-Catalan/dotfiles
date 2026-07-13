@@ -39,6 +39,12 @@
             directory = "/home/raul/dotfiles/wallpapers/vertical";
           };
         };
+        monitor = {
+          "eDP-1" = {
+            enabled = true;
+            directory = "/home/raul/dotfiles/wallpapers/horizontal";
+          };
+        };
       };
 
       shell = {
