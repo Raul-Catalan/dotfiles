@@ -41,6 +41,12 @@
       url = "github:NixOS/nixos-hardware";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # NVF - Nvim input
+    nvf = {
+      url = "github:notashelf/nvf";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   # Remember to add inputs below as we add them
@@ -49,6 +55,7 @@
       nixpkgs,
       home-manager,
       nixos-hardware,
+      nvf,
       ...
     }@inputs:
     {
@@ -69,6 +76,7 @@
               };
             }
             nixos-hardware.nixosModules.lenovo-thinkpad-x1-11th-gen
+            nvf.nixosModules.default
           ];
         };
         zeus = nixpkgs.lib.nixosSystem {
@@ -86,6 +94,7 @@
                 backupFileExtension = "backup";
               };
             }
+            nvf.nixosModules.default
           ];
         };
       };
