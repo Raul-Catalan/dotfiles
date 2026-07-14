@@ -24,6 +24,7 @@
 
         # --- Fuzzy Finder ---
         telescope.enable = true;
+        filetree.neo-tree.enable = true;
 
         # --- Typing ---
         autopairs.nvim-autopairs.enable = true;
@@ -63,6 +64,8 @@
           style = "mocha";
         };
         statusline.lualine.enable = true;
+        visuals.nvim-web-devicons.enable = true;
+        git.gitsigns.enable = true;
       };
     };
   };
