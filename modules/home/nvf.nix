@@ -24,7 +24,7 @@
 
         # --- Fuzzy Finder ---
         telescope.enable = true;
-        filetree.neo-tree.enable = true;
+        # filetree.neo-tree.enable = true;
 
         # --- Typing ---
         autopairs.nvim-autopairs.enable = true;
