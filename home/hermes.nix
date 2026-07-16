@@ -33,6 +33,7 @@
       libnotify
       slack
       pavucontrol
+      claude-code
     ];
 
     pointerCursor = {
