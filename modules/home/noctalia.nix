@@ -1,5 +1,4 @@
-{ inputs, ... }:
-{
+{inputs, ...}: {
   imports = [
     inputs.noctalia.homeModules.default
   ];
@@ -9,12 +8,14 @@
     settings = {
       theme = {
         mode = "dark";
-        source = "builtin";
+        source = "community";
         builtin = "Catppuccin";
+        community_palette = "Solarized";
       };
 
       wallpaper = {
         enabled = true;
+        fill_mode = ""
         transition_on_startup = true;
         per_monitor_directories = true;
 
@@ -92,17 +93,17 @@
             enabled = true;
           };
           /*
-            # Buggy Suspend
-            suspend = {
-              timeout = 1800;
-              action = "lock_and_suspend";
+          # Buggy Suspend
+          suspend = {
+            timeout = 1800;
+            action = "lock_and_suspend";
+          };
+            custom = {
+              timeout = 48;
+              action = "command";
+              command = "notify-send 'Idle' 'Going idle'";
+              resume_command = "notify-send 'Idle' 'Back from idle'";
             };
-              custom = {
-                timeout = 48;
-                action = "command";
-                command = "notify-send 'Idle' 'Going idle'";
-                resume_command = "notify-send 'Idle' 'Back from idle'";
-              };
           */
         };
       };

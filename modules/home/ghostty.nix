@@ -4,7 +4,7 @@
   programs.ghostty = {
     enable = true;
     settings = {
-      theme = "Catppuccin Mocha";
+      theme = "Solarized Osaka Night";
     };
   };
 }
