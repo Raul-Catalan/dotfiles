@@ -60,8 +60,8 @@
         # --- Theme and UI ---
         theme = {
           enable = true;
-          name = "catppuccin";
-          style = "mocha";
+          name = "solarized";
+          style = "dark";
         };
         statusline.lualine.enable = true;
         visuals.nvim-web-devicons.enable = true;
