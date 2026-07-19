@@ -15,7 +15,8 @@
 
       wallpaper = {
         enabled = true;
-        fill_mode = ""
+        fill_mode = "fit";
+        fill_color = "#0D3644";
         transition_on_startup = true;
         per_monitor_directories = true;
 

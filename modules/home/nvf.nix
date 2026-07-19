@@ -60,7 +60,7 @@
         # --- Theme and UI ---
         theme = {
           enable = true;
-          name = "solarized";
+          name = "solarized-osaka";
           style = "dark";
         };
         statusline.lualine.enable = true;

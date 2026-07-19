@@ -4,6 +4,6 @@
     enable = true;
     enableFishIntegration = true;
     enableInteractive = true;
-    presets = [ "catppuccin-powerline" ];
+    presets = ["nerd-font-symbols"];
   };
 }
