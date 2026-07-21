@@ -10,7 +10,7 @@
         mode = "dark";
         source = "community";
         builtin = "Catppuccin";
-        community_palette = "Solarized";
+        community_palette = "Tokyo Night Storm";
       };
 
       wallpaper = {

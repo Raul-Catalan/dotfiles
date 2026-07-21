@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   # Enable Flakes and Optimize the Store
   nix.settings.experimental-features = [
     "nix-command"
@@ -33,6 +33,7 @@
     wget
     killall
     tree
+    ripgrep
+    fd
   ];
-
 }

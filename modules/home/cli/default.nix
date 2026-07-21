@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   imports = [
     ./bash.nix
     ./helix.nix
@@ -19,6 +18,8 @@
     bat # Better Cat
     imagemagick # To CLI edit images
     mediainfo # CLI tool to see media Info, also integrated with yazi for media info
-    btop # Measure Performance
+    btop # Measure # Measure Performance
+    wl-clipboard # Obsidian Clipboard warning
+    tree-sitter # NVIM tree sitter
   ];
 }

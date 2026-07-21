@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   imports = [
     ../modules/home/hypr/hyprland.nix
     ../modules/home/hypr/environments_nvidia.nix
@@ -27,8 +26,8 @@
 
     pointerCursor = {
       gtk.enable = true;
-      name = "Catppuccin Cursor";
-      package = pkgs.catppuccin-cursors.mochaLight;
+      name = "Simp1e-Solarized-Dark";
+      package = pkgs.pkgs.simp1e-cursors;
       size = 24;
     };
 

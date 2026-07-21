@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   # Tmux
   programs.tmux = {
     enable = true;
@@ -7,7 +6,7 @@
     sensibleOnTop = true;
 
     plugins = with pkgs.tmuxPlugins; [
-      catppuccin
+      tokyo-night-tmux
     ];
   };
 }

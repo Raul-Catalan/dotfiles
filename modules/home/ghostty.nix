@@ -4,7 +4,8 @@
   programs.ghostty = {
     enable = true;
     settings = {
-      theme = "Solarized Osaka Night";
+      theme = "TokyoNight Storm";
+      font-family = "JetBrainsMono Nerd Font";
     };
   };
 }
