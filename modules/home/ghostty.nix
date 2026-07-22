@@ -4,8 +4,9 @@
   programs.ghostty = {
     enable = true;
     settings = {
-      theme = "TokyoNight Storm";
+      theme = "Dracula";
       font-family = "JetBrainsMono Nerd Font";
+      term = "xterm-256color";
     };
   };
 }

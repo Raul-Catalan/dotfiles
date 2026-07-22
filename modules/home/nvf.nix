@@ -160,8 +160,8 @@
         # --- Theme and Interface ---
         theme = {
           enable = true;
-          name = "tokyonight";
-          style = "storm";
+          name = "dracula";
+          style = "dark";
         };
         statusline.lualine.enable = true;
         visuals.nvim-web-devicons.enable = true;

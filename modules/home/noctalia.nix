@@ -8,13 +8,12 @@
     settings = {
       theme = {
         mode = "dark";
-        source = "community";
-        builtin = "Catppuccin";
-        community_palette = "Tokyo Night Storm";
+        source = "builtin";
+        builtin = "Dracula";
       };
 
       wallpaper = {
-        enabled = true;
+        enabled = false;
         fill_mode = "fit";
         fill_color = "#0D3644";
         transition_on_startup = true;

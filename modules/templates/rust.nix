@@ -22,7 +22,6 @@ pkgs.mkShell {
   RUST_SRC_PATH = pkgs.rustPlatform.rustLibSrc; # Required for rust-analyzer LSP to find standard library source
 
   shellHook = ''
-    echo "🦀 Welcome to your Nix-powered Rust development shell!"
     echo "Rust version: $(rustc --version)"
   '';
 }

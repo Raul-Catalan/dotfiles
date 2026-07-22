@@ -11,6 +11,16 @@ in {
             "hyprland.start"
             (lua ''
               function()
+                hl.exec_cmd("swaybg -c '282A36'")
+              end
+            '')
+          ];
+        }
+        {
+          _args = [
+            "hyprland.start"
+            (lua ''
+              function()
                 hl.exec_cmd("noctalia")
               end
             '')

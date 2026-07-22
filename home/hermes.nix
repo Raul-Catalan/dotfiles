@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   imports = [
     ../modules/home/hypr/hyprland.nix
     ../modules/home/noctalia.nix
@@ -34,6 +33,7 @@
       slack
       pavucontrol
       claude-code
+      swaybg
     ];
 
     pointerCursor = {

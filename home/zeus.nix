@@ -22,6 +22,7 @@
       slack
       pavucontrol
       claude-code
+      swaybg
     ];
 
     pointerCursor = {

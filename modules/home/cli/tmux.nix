@@ -6,7 +6,7 @@
     sensibleOnTop = true;
 
     plugins = with pkgs.tmuxPlugins; [
-      tokyo-night-tmux
+      dracula
     ];
   };
 }
