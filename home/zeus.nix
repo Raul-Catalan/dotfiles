@@ -7,6 +7,7 @@
     ../modules/home/cli/default.nix
     ../modules/home/vscode.nix
     ../modules/home/nvf.nix
+    ../modules/home/anki.nix
   ];
 
   home = {
