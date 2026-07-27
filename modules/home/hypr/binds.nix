@@ -1,5 +1,4 @@
-{ lib, ... }:
-let
+{lib, ...}: let
   lua = lib.generators.mkLuaInline;
   mainMod = "SUPER";
 
@@ -13,6 +12,7 @@ let
     layout = msg: lua ''hl.dsp.layout("${msg}")'';
     focus = dir: lua ''hl.dsp.focus({ direction = "${dir}" })'';
     swap = dir: lua ''hl.dsp.window.swap({ direction = "${dir}" })'';
+    move = dir: lua ''hl.dsp.window.move({ direction = ${dir}" })'';
     toggleSpecial = name: lua ''hl.dsp.workspace.toggle_special("${name}")'';
     moveToSpecial = name: lua ''hl.dsp.window.move({ workspace = "special:${name}" })'';
     focusWorkspace = ws: lua ''hl.dsp.focus({ workspace = "${toString ws}" })'';
@@ -37,83 +37,86 @@ let
   };
 
   workspaceBinds = lib.concatMap (
-    i:
-    let
+    i: let
       key = toString (lib.mod i 10);
-    in
-    [
+    in [
       (bind "${mainMod} + ${key}" (dsp.focusWorkspace i))
       (bind "${mainMod} + SHIFT + ${key}" (dsp.moveToWorkspace i))
     ]
   ) (lib.range 1 10);
-in
-{
+in {
   wayland.windowManager.hyprland.settings = {
-    bind = [
-      # App Launchers
-      (bind "${mainMod} + RETURN" (dsp.exec "ghostty")) # Run Terminal (Ghostty)
-      (bind "${mainMod} + B" (dsp.exec "google-chrome-stable")) # Open Browser
-      # <-- Place Holder for file Manager -->
-      (bind "${mainMod} + SPACE" (dsp.exec "noctalia msg panel-toggle launcher"))
-      (bind "${mainMod} + CTRL + SPACE" (dsp.exec "noctalia msg panel-toggle control-center"))
+    bind =
+      [
+        # App Launchers
+        (bind "${mainMod} + RETURN" (dsp.exec "ghostty")) # Run Terminal (Ghostty)
+        (bind "${mainMod} + B" (dsp.exec "google-chrome-stable")) # Open Browser
+        # <-- Place Holder for file Manager -->
+        (bind "${mainMod} + SPACE" (dsp.exec "noctalia msg panel-toggle launcher"))
+        (bind "${mainMod} + CTRL + SPACE" (dsp.exec "noctalia msg panel-toggle control-center"))
 
-      # Screenshots
-      (bind "${mainMod} + CTRL + 1" (dsp.exec "noctalia msg screenshot-region"))
-      (bind "${mainMod} + CTRL + 2" (dsp.exec "noctalia msg screenshot-fullscreen"))
+        # Screenshots
+        (bind "${mainMod} + CTRL + 1" (dsp.exec "noctalia msg screenshot-region"))
+        (bind "${mainMod} + CTRL + 2" (dsp.exec "noctalia msg screenshot-fullscreen"))
 
-      # Universal copy/paste
-      (bind "${mainMod} + C" (dsp.sendshortcut "CTRL" "Insert"))
-      (bind "${mainMod} + V" (dsp.sendshortcut "SHIFT" "Insert"))
-      (bind "${mainMod} + X" (dsp.sendshortcut "CTRL" "X"))
+        # Universal copy/paste
+        (bind "${mainMod} + C" (dsp.sendshortcut "CTRL" "Insert"))
+        (bind "${mainMod} + V" (dsp.sendshortcut "SHIFT" "Insert"))
+        (bind "${mainMod} + X" (dsp.sendshortcut "CTRL" "X"))
 
-      # Window management
-      (bind "${mainMod} + Q" dsp.close) # Close Window
-      (bind "${mainMod} + SHIFT + Q" (dsp.exit)) # Close Hyprland
-      (bind "${mainMod} + T" (dsp.float)) # Toggle between tiling and floating windows
-      (bind "${mainMod} + F" (dsp.fullscreen)) # Fullscreen current window
-      (bind "${mainMod} + P" dsp.pseudo)
-      # (bind "${mainMod} + J" (dsp.layout "togglesplit"))
+        # Window management
+        (bind "${mainMod} + Q" dsp.close) # Close Window
+        (bind "${mainMod} + SHIFT + Q" (dsp.exit)) # Close Hyprland
+        (bind "${mainMod} + T" (dsp.float)) # Toggle between tiling and floating windows
+        (bind "${mainMod} + F" (dsp.fullscreen)) # Fullscreen current window
+        (bind "${mainMod} + P" dsp.pseudo)
 
-      # Focus
-      (bind "${mainMod} + H" (dsp.focus "left"))
-      (bind "${mainMod} + L" (dsp.focus "right"))
-      (bind "${mainMod} + K" (dsp.focus "up"))
-      (bind "${mainMod} + J" (dsp.focus "down"))
+        (bind "${mainMod} + G" (dsp.layout "togglesplit"))
+        # (bind "${mainMod} + SHIFT + H" (dsp.move "left"))
+        # (bind "${mainMod} + SHIFT + L" (dsp.move "right"))
+        # (bind "${mainMod} + SHIFT + K" (dsp.move "up"))
+        # (bind "${mainMod} + SHIFT + J" (dsp.move "down"))
 
-      # Swap Windows
-      (bind "${mainMod} + SHIFT + H" (dsp.swap "left"))
-      (bind "${mainMod} + SHIFT + L" (dsp.swap "right"))
-      (bind "${mainMod} + SHIFT + K" (dsp.swap "up"))
-      (bind "${mainMod} + SHIFT + J" (dsp.swap "down"))
+        # Focus
+        (bind "${mainMod} + H" (dsp.focus "left"))
+        (bind "${mainMod} + L" (dsp.focus "right"))
+        (bind "${mainMod} + K" (dsp.focus "up"))
+        (bind "${mainMod} + J" (dsp.focus "down"))
 
-      # Special workspace
-      (bind "${mainMod} + S" (dsp.toggleSpecial "scratchpad"))
-      (bind "${mainMod} + SHIFT + S" (dsp.moveToSpecial "scratchpad"))
+        # Swap Windows
+        (bind "${mainMod} + SHIFT + H" (dsp.swap "left"))
+        (bind "${mainMod} + SHIFT + L" (dsp.swap "right"))
+        (bind "${mainMod} + SHIFT + K" (dsp.swap "up"))
+        (bind "${mainMod} + SHIFT + J" (dsp.swap "down"))
 
-      # Scroll through workspaces
-      (bind "${mainMod} + mouse_down" (dsp.focusWorkspace "e+1"))
-      (bind "${mainMod} + mouse_up" (dsp.focusWorkspace "e-1"))
+        # Special workspace
+        (bind "${mainMod} + S" (dsp.toggleSpecial "scratchpad"))
+        (bind "${mainMod} + SHIFT + S" (dsp.moveToSpecial "scratchpad"))
 
-      # Volume keys
-      (bindOpts "XF86AudioRaiseVolume" (dsp.exec "wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+") {
-        locked = true;
-        repeating = true;
-      })
-      (bindOpts "XF86AudioLowerVolume" (dsp.exec "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-") {
-        locked = true;
-        repeating = true;
-      })
-      (bindOpts "XF86AudioMute" (dsp.exec "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle") {
-        locked = true;
-      })
-      (bindOpts "XF86AudioMicMute" (dsp.exec "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle") {
-        locked = true;
-      })
+        # Scroll through workspaces
+        (bind "${mainMod} + mouse_down" (dsp.focusWorkspace "e+1"))
+        (bind "${mainMod} + mouse_up" (dsp.focusWorkspace "e-1"))
 
-      # Mouse move/resize
-      (bindOpts "${mainMod} + mouse:272" dsp.drag { mouse = true; })
-      (bindOpts "${mainMod} + mouse:273" dsp.resize { mouse = true; })
-    ]
-    ++ workspaceBinds;
+        # Volume keys
+        (bindOpts "XF86AudioRaiseVolume" (dsp.exec "wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+") {
+          locked = true;
+          repeating = true;
+        })
+        (bindOpts "XF86AudioLowerVolume" (dsp.exec "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-") {
+          locked = true;
+          repeating = true;
+        })
+        (bindOpts "XF86AudioMute" (dsp.exec "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle") {
+          locked = true;
+        })
+        (bindOpts "XF86AudioMicMute" (dsp.exec "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle") {
+          locked = true;
+        })
+
+        # Mouse move/resize
+        (bindOpts "${mainMod} + mouse:272" dsp.drag {mouse = true;})
+        (bindOpts "${mainMod} + mouse:273" dsp.resize {mouse = true;})
+      ]
+      ++ workspaceBinds;
   };
 }
