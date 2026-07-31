@@ -21,7 +21,7 @@
           shiftwidth = 2;
           autoindent = true;
           smartindent = true;
-          conceallevel = 2;
+          conceallevel = 0;
           wrap = true; # Wrap long lines
           linebreak = true; # Wrap whole words instead of the middle
           spell = true; # Enable Spell checking

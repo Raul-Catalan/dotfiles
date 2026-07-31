@@ -21,5 +21,6 @@
     btop # Measure # Measure Performance
     wl-clipboard # Obsidian Clipboard warning
     tree-sitter # NVIM tree sitter
+    todoist # Todoist cli
   ];
 }
