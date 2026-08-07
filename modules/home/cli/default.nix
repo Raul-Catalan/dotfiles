@@ -5,6 +5,7 @@
     ./git.nix
     ./github.nix
     ./fish.nix
+    ./taskwarrior.nix
     ./tmux.nix
     ./starship.nix
     ./yazi.nix
