@@ -114,6 +114,13 @@
             action = "<cmd>nohlsearch<CR>";
             desc = "Clear search highlights";
           }
+          # --- Diagnostic ---
+          {
+            key = "<leader>tf";
+            mode = "n";
+            action = "<cmd>lua vim.diagnostic.open_float()<CR>";
+            desc = "Open Floating Diagnostic";
+          }
           # --- Obsidian ---
           {
             key = "<leader>on";
