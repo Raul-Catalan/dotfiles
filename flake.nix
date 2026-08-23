@@ -11,11 +11,11 @@
     };
 
     /*
-      # secret management (age-encrypted secrets in git)
-      agenix = {
-        url = "github:ryantm/agenix";
-        inputs.nixpkgs.follows = "nixpkgs";
-      };
+    # secret management (age-encrypted secrets in git)
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     */
 
     # Noctalia
@@ -47,53 +47,75 @@
       url = "github:NotAShelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # NixOS-WSL - run NixOS as a WSL2 distro
+    nixos-wsl = {
+      url = "github:nix-community/NixOS-WSL";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   # Remember to add inputs below as we add them
-  outputs =
-    {
-      nixpkgs,
-      home-manager,
-      nixos-hardware,
-      ...
-    }@inputs:
-    {
-      nixosConfigurations = {
-        hermes = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs; };
-          system = "x86_64-linux";
-          modules = [
-            ./hosts/hermes/configuration.nix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                extraSpecialArgs = { inherit inputs; };
-                users.raul = import ./home/hermes.nix;
-                backupFileExtension = "backup";
-              };
-            }
-            nixos-hardware.nixosModules.lenovo-thinkpad-x1-11th-gen
-          ];
-        };
-        zeus = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = { inherit inputs; };
-          modules = [
-            ./hosts/zeus/configuration.nix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                extraSpecialArgs = { inherit inputs; };
-                users.raul = import ./home/zeus.nix;
-                backupFileExtension = "backup";
-              };
-            }
-          ];
-        };
+  outputs = {
+    nixpkgs,
+    home-manager,
+    nixos-hardware,
+    ...
+  } @ inputs: {
+    nixosConfigurations = {
+      hermes = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs;};
+        system = "x86_64-linux";
+        modules = [
+          ./hosts/hermes/configuration.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              extraSpecialArgs = {inherit inputs;};
+              users.raul = import ./home/hermes.nix;
+              backupFileExtension = "backup";
+            };
+          }
+          nixos-hardware.nixosModules.lenovo-thinkpad-x1-11th-gen
+        ];
+      };
+      zeus = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = {inherit inputs;};
+        modules = [
+          ./hosts/zeus/configuration.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              extraSpecialArgs = {inherit inputs;};
+              users.raul = import ./home/zeus.nix;
+              backupFileExtension = "backup";
+            };
+          }
+        ];
+      };
+      wsl = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = {inherit inputs;};
+        modules = [
+          inputs.nixos-wsl.nixosModules.default
+          ./hosts/wsl/configuration.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              extraSpecialArgs = {inherit inputs;};
+              users.raul = import ./home/wsl.nix;
+              backupFileExtension = "backup";
+            };
+          }
+        ];
       };
     };
+  };
 }

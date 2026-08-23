@@ -79,7 +79,10 @@
 
           # Programming
           python.enable = true;
-          rust.enable = true;
+          rust = {
+            enable = true;
+            format.enable = false;
+          };
           # Web
           astro.enable = true;
           typescript.enable = true;
