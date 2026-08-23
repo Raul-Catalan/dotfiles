@@ -9,7 +9,7 @@
     ./tmux.nix
     ./starship.nix
     ./yazi.nix
-    ./nh.nix
+    # ./nh.nix
   ];
 
   # tools and supporting packages
