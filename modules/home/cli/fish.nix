@@ -6,6 +6,7 @@
       la = "ls -a";
       zeus-update = "sudo nixos-rebuild switch --flake ~/dotfiles#zeus";
       hermes-update = "sudo nixos-rebuild switch --flake ~/dotfiles#hermes";
+      wsl-update = "sudo nixos-rebuild switch --flake ~/dotfiles#wsl";
       ga = "git add .";
       gc = "git commit -m";
     };
