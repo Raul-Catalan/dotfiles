@@ -42,9 +42,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # NVF - Nvim input
-    nvf = {
-      url = "github:NotAShelf/nvf";
+    # Nixvim - Nvim config as a home-manager module
+    nixvim = {
+      url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

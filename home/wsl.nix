@@ -1,7 +1,7 @@
 {...}: {
   imports = [
     ../modules/home/cli/default.nix
-    ../modules/home/nvf.nix
+    ../modules/home/nixvim.nix
   ];
 
   home = {

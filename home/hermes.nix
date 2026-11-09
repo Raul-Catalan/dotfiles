@@ -5,7 +5,7 @@
     ../modules/home/ghostty.nix
     ../modules/home/cli/default.nix
     ../modules/home/vscode.nix
-    ../modules/home/nvf.nix
+    ../modules/home/nixvim.nix
   ];
 
   wayland.windowManager.hyprland = {
