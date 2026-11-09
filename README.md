@@ -1,11 +1,12 @@
 # NixOS + Flake + Home Manager + Hyprland Configuration
-Hello, my name is Raul Catalan, this is my NixOS config using flakes and home manager.
+
+Hello, my name is Raul Catalan, this is my NixOS config using flakes and home
+manager.
 
 ## Structure
 
 ```
 .
-├── CLAUDE.md
 ├── flake.lock
 ├── flake.nix
 ├── home

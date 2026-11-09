@@ -32,7 +32,6 @@
       libnotify
       slack
       pavucontrol
-      claude-code
       swaybg
     ];
 
