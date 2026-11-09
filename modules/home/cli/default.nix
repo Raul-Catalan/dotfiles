@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   imports = [
     ./bash.nix
+    ./claude-code.nix
     ./helix.nix
     ./git.nix
     ./github.nix
