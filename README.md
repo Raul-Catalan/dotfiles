@@ -65,9 +65,15 @@ manager.
 │   │   └── virtualisation
 │   │       └── docker.nix
 │   └── templates
-│       ├── npm.nix
-│       ├── python.nix
-│       ├── rust.nix
+│       ├── npm
+│       │   ├── .envrc
+│       │   └── flake.nix
+│       ├── python
+│       │   ├── .envrc
+│       │   └── flake.nix
+│       ├── rust
+│       │   ├── .envrc
+│       │   └── flake.nix
 │       └── start-tmux-astro.fish
 └── README.md
 ```

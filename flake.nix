@@ -117,5 +117,23 @@
         ];
       };
     };
+
+    # Project dev-env templates. Scaffold into the current directory with:
+    #   nix flake init -t ~/dotfiles#npm      (or #python, #rust)
+    # then `direnv allow` to auto-load the shell on cd.
+    templates = {
+      npm = {
+        path = ./modules/templates/npm;
+        description = "Node.js / npm dev shell";
+      };
+      python = {
+        path = ./modules/templates/python;
+        description = "Python 3 dev shell (requests, pandas, numpy)";
+      };
+      rust = {
+        path = ./modules/templates/rust;
+        description = "Rust toolchain dev shell";
+      };
+    };
   };
 }
