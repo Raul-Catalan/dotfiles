@@ -27,7 +27,9 @@ manager.
 │   │   ├── anki.nix
 │   │   ├── cli
 │   │   │   ├── bash.nix
+│   │   │   ├── claude-code.nix
 │   │   │   ├── default.nix
+│   │   │   ├── direnv.nix
 │   │   │   ├── fish.nix
 │   │   │   ├── github.nix
 │   │   │   ├── git.nix
@@ -47,8 +49,8 @@ manager.
 │   │   │   ├── hyprland.nix
 │   │   │   ├── monitors.nix
 │   │   │   └── rules.nix
+│   │   ├── nixvim.nix
 │   │   ├── noctalia.nix
-│   │   ├── nvf.nix
 │   │   └── vscode.nix
 │   ├── nixos
 │   │   ├── desktop

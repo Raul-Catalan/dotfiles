@@ -28,7 +28,7 @@
     pointerCursor = {
       gtk.enable = true;
       name = "Simp1e-Solarized-Dark";
-      package = pkgs.pkgs.simp1e-cursors;
+      package = pkgs.simp1e-cursors;
       size = 24;
     };
 
