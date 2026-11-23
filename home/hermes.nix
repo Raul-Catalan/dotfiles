@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  username,
+  ...
+}: {
   imports = [
     ../modules/home/hypr/hyprland.nix
     ../modules/home/noctalia.nix
@@ -21,8 +25,8 @@
   };
 
   home = {
-    username = "raul";
-    homeDirectory = "/home/raul";
+    inherit username;
+    homeDirectory = "/home/${username}";
     stateVersion = "26.05";
 
     packages = with pkgs; [

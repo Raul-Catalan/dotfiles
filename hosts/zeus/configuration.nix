@@ -1,6 +1,5 @@
 {
   inputs,
-  pkgs,
   ...
 }:
 {
@@ -22,16 +21,8 @@
   networking.hostName = "zeus"; # Define your hostname.
 
   # --- User ---
-  users.users."raul" = {
-    isNormalUser = true; # set password with passwd
-    description = "Raul Catalan";
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-      "docker"
-    ];
-    shell = pkgs.fish;
-  };
+  # Defined in modules/nixos/user.nix (shared); desktop groups (networkmanager,
+  # wheel) are added by modules/nixos/desktop/default.nix.
 
   system.stateVersion = "26.05";
 }

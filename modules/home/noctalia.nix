@@ -1,4 +1,8 @@
-{inputs, ...}: {
+{
+  inputs,
+  config,
+  ...
+}: {
   imports = [
     inputs.noctalia.homeModules.default
   ];
@@ -30,20 +34,20 @@
         monitor = {
           "HDMI-A-1" = {
             enabled = true;
-            directory = "/home/raul/dotfiles/wallpapers/horizontal";
+            directory = "${config.home.homeDirectory}/dotfiles/wallpapers/horizontal";
           };
         };
 
         monitor = {
           "HDMI-A-2" = {
             enabled = true;
-            directory = "/home/raul/dotfiles/wallpapers/vertical";
+            directory = "${config.home.homeDirectory}/dotfiles/wallpapers/vertical";
           };
         };
         monitor = {
           "eDP-1" = {
             enabled = true;
-            directory = "/home/raul/dotfiles/wallpapers/horizontal";
+            directory = "${config.home.homeDirectory}/dotfiles/wallpapers/horizontal";
           };
         };
       };

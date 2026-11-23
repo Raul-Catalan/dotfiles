@@ -1,12 +1,17 @@
 {
+  fullName,
+  email,
+  ...
+}:
+{
   # Git and GH CLI
   programs.git = {
     enable = true;
     settings = {
 
       user = {
-        name = "Raul Catalan";
-        email = "raulrcatalan@gmail.com";
+        name = fullName;
+        inherit email;
       };
 
       core = {

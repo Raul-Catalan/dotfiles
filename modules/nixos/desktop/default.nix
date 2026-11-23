@@ -1,10 +1,18 @@
 {
   inputs,
   pkgs,
+  username,
   ...
 }: {
   # Enable Fish for the OS
   programs.fish.enable = true;
+
+  # Desktop hosts get the interactive/admin groups on top of the base set from
+  # modules/nixos/user.nix (these merge via the module system).
+  users.users.${username}.extraGroups = [
+    "networkmanager"
+    "wheel"
+  ];
 
   # Have to enable Hyprland at the OS Level
   programs.hyprland = {

@@ -1,6 +1,6 @@
 {
-  pkgs,
   lib,
+  username,
   ...
 }: {
   imports = [
@@ -15,7 +15,7 @@
 
   wsl = {
     enable = true;
-    defaultUser = "raul";
+    defaultUser = username;
   };
 
   # --- Networking ---
@@ -24,14 +24,8 @@
   networking.hostName = "wsl"; # Define your hostname.
 
   # --- User ---
-  users.users."raul" = {
-    isNormalUser = true; # set password with passwd
-    description = "Raul Catalan";
-    extraGroups = [
-      "docker"
-    ];
-    shell = pkgs.fish;
-  };
+  # Defined in modules/nixos/user.nix (shared). WSL doesn't import the desktop
+  # module, so the user keeps the minimal base group set (docker only).
 
   system.stateVersion = "26.05";
 }

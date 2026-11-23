@@ -61,60 +61,50 @@
     home-manager,
     nixos-hardware,
     ...
-  } @ inputs: {
+  } @ inputs: let
+    # Single source of truth for the user. Threaded into every host and home
+    # module via specialArgs / extraSpecialArgs, so "raul" / "/home/raul" are
+    # never hardcoded in the modules themselves.
+    username = "raul";
+    fullName = "Raul Catalan";
+    email = "raulrcatalan@gmail.com";
+
+    # Build a NixOS host from a hostname. Wires in the shared user module and
+    # home-manager, and looks up ./hosts/<hostname> + ./home/<hostname>.nix.
+    mkHost = {
+      hostname,
+      system ? "x86_64-linux",
+      extraModules ? [ ],
+    }:
+      nixpkgs.lib.nixosSystem {
+        inherit system;
+        specialArgs = {inherit inputs username fullName hostname;};
+        modules = [
+          ./hosts/${hostname}/configuration.nix
+          ./modules/nixos/user.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              extraSpecialArgs = {inherit inputs username fullName email;};
+              users.${username} = import ./home/${hostname}.nix;
+              backupFileExtension = "backup";
+            };
+          }
+        ]
+        ++ extraModules;
+      };
+  in {
     nixosConfigurations = {
-      hermes = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs;};
-        system = "x86_64-linux";
-        modules = [
-          ./hosts/hermes/configuration.nix
-          home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              extraSpecialArgs = {inherit inputs;};
-              users.raul = import ./home/hermes.nix;
-              backupFileExtension = "backup";
-            };
-          }
-          nixos-hardware.nixosModules.lenovo-thinkpad-x1-11th-gen
-        ];
+      hermes = mkHost {
+        hostname = "hermes";
+        extraModules = [nixos-hardware.nixosModules.lenovo-thinkpad-x1-11th-gen];
       };
-      zeus = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = {inherit inputs;};
-        modules = [
-          ./hosts/zeus/configuration.nix
-          home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              extraSpecialArgs = {inherit inputs;};
-              users.raul = import ./home/zeus.nix;
-              backupFileExtension = "backup";
-            };
-          }
-        ];
-      };
-      wsl = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = {inherit inputs;};
-        modules = [
-          inputs.nixos-wsl.nixosModules.default
-          ./hosts/wsl/configuration.nix
-          home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              extraSpecialArgs = {inherit inputs;};
-              users.raul = import ./home/wsl.nix;
-              backupFileExtension = "backup";
-            };
-          }
-        ];
+      zeus = mkHost {hostname = "zeus";};
+      wsl = mkHost {
+        hostname = "wsl";
+        extraModules = [inputs.nixos-wsl.nixosModules.default];
       };
     };
 

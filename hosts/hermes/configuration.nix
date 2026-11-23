@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }:
+{ inputs, ... }:
 {
   imports = [
     inputs.noctalia-greeter.nixosModules.default
@@ -14,20 +14,8 @@
 
   networking.hostName = "hermes"; # Define your hostname.
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  # Maybe refactor this somewhere else?
-  # dotfiles/users/raul/default.nix?
-  # or dotfiles/hosts/common/users/raul/default.nix?
-  users.users."raul" = {
-    isNormalUser = true;
-    description = "Raul Catalan";
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-      "docker"
-    ];
-    shell = pkgs.fish;
-  };
+  # User account is defined in modules/nixos/user.nix (shared); desktop groups
+  # (networkmanager, wheel) are added by modules/nixos/desktop/default.nix.
 
   system.stateVersion = "26.05";
 }
