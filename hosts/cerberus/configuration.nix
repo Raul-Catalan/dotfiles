@@ -30,6 +30,13 @@
   # (docker only) — like WSL.
   users.users.${username}.extraGroups = ["wheel"];
 
+  swapDevices = [
+    {
+      device = "/var/lib/swapfile";
+      size = 4 * 1024; # 4 GB in MiB
+    }
+  ];
+
   # Set this to the NixOS release you installed from (check: `nixos-version`).
   # Keep it fixed afterwards; it is not a "latest" knob.
   system.stateVersion = "26.05";
