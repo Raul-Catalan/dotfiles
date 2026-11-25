@@ -4,6 +4,7 @@
   ...
 }: {
   imports = [
+    ../../modules/nixos/services/tailscale.nix
     ../../modules/nixos/system/default.nix
     ../../modules/nixos/system/nix-ld.nix
     ../../modules/nixos/virtualisation/docker.nix
