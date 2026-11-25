@@ -28,6 +28,7 @@
   # User account lives in modules/nixos/user.nix (shared). This host does not
   # import the desktop module, so the user keeps the minimal base group set
   # (docker only) — like WSL.
+  users.users.raul.extraGroups = ["wheel"];
 
   # Set this to the NixOS release you installed from (check: `nixos-version`).
   # Keep it fixed afterwards; it is not a "latest" knob.
