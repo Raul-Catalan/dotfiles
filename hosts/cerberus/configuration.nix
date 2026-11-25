@@ -1,5 +1,4 @@
-{ ... }:
-{
+{...}: {
   imports = [
     ./hardware-configuration.nix
     ../../modules/nixos/system/default.nix
@@ -8,7 +7,7 @@
     # VM was installed in legacy BIOS/SeaBIOS mode, swap this import for a GRUB
     # bootloader instead (check with `ls /sys/firmware/efi` on the VM: present
     # => UEFI).
-    ../../modules/nixos/system/bootloader.nix
+    ../../modules/nixos/system/bootloader-bios.nix
 
     # Headless server bits
     ../../modules/nixos/virtualisation/proxmox-guest.nix
