@@ -106,6 +106,8 @@
         hostname = "wsl";
         extraModules = [inputs.nixos-wsl.nixosModules.default];
       };
+      # NixOS VM running inside Proxmox, reached over Tailscale.
+      cerberus = mkHost {hostname = "cerberus";};
     };
 
     # Project dev-env templates. Scaffold into the current directory with:
